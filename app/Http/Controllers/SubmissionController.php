@@ -12,8 +12,8 @@ class SubmissionController extends Controller
         return $form->submissions;
     }
 
-    public function view(Submission $submission){
-        return $submission;
+    public function view($formId, $submissionId){
+        return \App\Submission::where('id', $submissionId)->first();
     }
 
     public function store(Form $form, Request $request){
