@@ -13,12 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/forms', 'FormController@index');
-Route::get('/forms/{form}', 'FormController@view');
-Route::delete('/forms/{form}', 'FormController@destroy');
-Route::put('/forms/{form}', 'FormController@update');
-Route::post('/forms', 'FormController@store');
+Route::post('login', 'UserController@login');
+Route::post('signup', 'UserController@signup');
 
-Route::get('/submissions/{form}', 'SubmissionController@index');
-Route::get('/submissions/{form}/{submission}', 'SubmissionController@view');
+Route::group(['middleware'=> 'auth.jwt'], function (){
+    Route::get('/forms', 'FormController@index');
+    Route::delete('/forms/{form}', 'FormController@destroy');
+    Route::put('/forms/{form}', 'FormController@update');
+    Route::post('/forms', 'FormController@store');
+
+    Route::get('/submissions/{form}', 'SubmissionController@index');
+    Route::get('/submissions/{form}/{submission}', 'SubmissionController@view');
+});
+
+
+Route::get('/forms/{form}', 'FormController@view');
 Route::post('/submissions/{form}', 'SubmissionController@store');

@@ -9,7 +9,7 @@ use \App\Form;
 class FormController extends Controller
 {
     public function index(){
-        return Form::latest()->get();
+        return Form::where('user_id', auth()->user()->id)->get();
     }
 
     public function view(Form $form){
@@ -23,6 +23,8 @@ class FormController extends Controller
         $form->name = $request->input('name');
 
         $form->description = $request->input('description');
+
+        $form->user_id = auth()->user()->id;
 
         $form->form = json_encode($request->input('form'));
 

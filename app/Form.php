@@ -11,4 +11,8 @@ class Form extends Model
     public function submissions(){
         return $this->hasMany('App\Submission');
     }
+
+    public function user(){
+        return $this->belongsTo('\App\User');
+    }
 }

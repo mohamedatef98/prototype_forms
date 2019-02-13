@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +11,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::fallback(function() { 
+Route::fallback(function() {
     View::addExtension('html', 'php');
     return View::make('index'); 
 });
