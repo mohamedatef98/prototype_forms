@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 Route::post('login', 'UserController@login');
 Route::post('signup', 'UserController@signup');
 
-Route::group([], function (){
+Route::group(['middleware'=> 'auth.jwt'], function (){
     Route::get('/forms', 'FormController@index');
     Route::delete('/forms/{form}', 'FormController@destroy');
     Route::put('/forms/{form}', 'FormController@update');
