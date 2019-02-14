@@ -16,24 +16,23 @@ class UserController extends Controller
         ]);
 
         if($validator->fails()){
-            // return response()->json(['error'=> $validator->errors()], 400);
-            return response(json_encode(['error'=>$validator->errors()]), 400);
+            return response()->json(['error'=> $validator->errors()], 400);
         }
 
         $input = $request->only('email', 'password');
         $jwt_token = null;
 
         if (!$jwt_token = auth()->attempt($input)) {
-            return response(json_encode([
+            return response()->json([
                 'success' => false,
                 'message' => 'Invalid Email or Password',
-            ]), 401);
+            ], 401);
         }
 
-        return response(json_encode([
+        return response()->json([
             'success' => true,
             'token' => $jwt_token,
-        ]));
+        ]);
 
     }
 
@@ -45,7 +44,7 @@ class UserController extends Controller
         ]);
 
         if($validator->fails()){
-            return response(json_encode(['error'=> $validator->errors()]), 400);
+            return response()->json(['error'=> $validator->errors()], 400);
         }
 
         $user = new \App\User;
@@ -55,7 +54,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return response(json_encode(['success'=>true, 'data'=>$user]));
+        return response()->json(['success'=>true, 'data'=>$user]);
     }
 
     public function logout(Request $request){
