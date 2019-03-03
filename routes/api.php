@@ -21,6 +21,7 @@ Route::group(['middleware'=> 'auth.jwt'], function (){
     Route::delete('/forms/{form}', 'FormController@destroy');
     Route::put('/forms/{form}', 'FormController@update');
     Route::post('/forms', 'FormController@store');
+    Route::get('/forms/{form}/print', 'FormController@print');
 
     Route::get('/submissions/{form}', 'SubmissionController@index');
     Route::get('/submissions/{form}/{submission}', 'SubmissionController@view');
